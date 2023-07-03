@@ -1,4 +1,4 @@
-/snap/clion/237/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/237/bin/ninja/linux/x64/ninja -G Ninja -S /home/parxed/code/projects/CommandLineDB -B /home/parxed/code/projects/CommandLineDB/cmake-build-debug
+/snap/clion/241/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/241/bin/ninja/linux/x64/ninja -G Ninja -S /home/parxed/code/projects/CommandLineDB -B /home/parxed/code/projects/CommandLineDB/cmake-build-debug
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/parxed/code/projects/CommandLineDB/cmake-build-debug

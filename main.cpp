@@ -1,14 +1,19 @@
 #include <iostream>
 #include "include/btree_map.h"
+#include "include/repl.h"
+#include "include/db.h"
+
+typedef btree::btree_map<int, int> MyMap;
 
 int main() {
-    typedef btree::btree_map<int, int> MyMap;
-
     auto obj_map = new MyMap;
     MyMap::const_iterator lookup1 = obj_map->find(5);
     obj_map->insert(std::make_pair<int, int>(5, 3));
     MyMap::const_iterator lookup2 = obj_map->find(5);
     delete obj_map;
+
+    REPL::instance();
+    db database;
 
     return 0;
 }
