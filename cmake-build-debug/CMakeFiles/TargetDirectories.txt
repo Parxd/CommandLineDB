@@ -1,3 +1,0 @@
-/home/parxed/code/projects/CommandLineDB/cmake-build-debug/CMakeFiles/CommandLineDB.dir
-/home/parxed/code/projects/CommandLineDB/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/parxed/code/projects/CommandLineDB/cmake-build-debug/CMakeFiles/rebuild_cache.dir
