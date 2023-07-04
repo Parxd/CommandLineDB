@@ -14,5 +14,5 @@ const_iterator Store::remove(const std::string& key) {
     return tree_.erase(retrieve(key));
 }
 const std::string &Store::getTitle() const {
-    return title;
+    return title_;
 }

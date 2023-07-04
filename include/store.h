@@ -19,7 +19,8 @@ public:
     const_iterator remove(const std::string& key);
     [[nodiscard]] const std::string& getTitle() const;
 private:
-    std::string title;
+    std::string title_;
+    std::pair<std::string, std::string> cols_;
     size_t record_;
     Tree tree_;
 };

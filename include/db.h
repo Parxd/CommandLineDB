@@ -4,6 +4,8 @@
 #include "store.h"
 #include "repl.h"
 
+class REPL;
+
 class db {
 public:
     db();
