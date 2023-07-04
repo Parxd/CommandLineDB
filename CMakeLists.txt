@@ -8,4 +8,5 @@ target_sources(CommandLineDB PRIVATE
         ./src/store.cpp
         ./src/repl.cpp
         ./src/db.cpp
+        ./src/command.cpp
         )

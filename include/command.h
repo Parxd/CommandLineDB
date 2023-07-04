@@ -1,0 +1,11 @@
+#ifndef COMMANDLINEDB_COMMAND_H
+#define COMMANDLINEDB_COMMAND_H
+
+
+
+class Command {
+
+};
+
+
+#endif //COMMANDLINEDB_COMMAND_H
