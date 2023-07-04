@@ -10,6 +10,7 @@ class db {
 public:
     db();
     ~db() = default;
+    void insert(std::string key, std::string value);
 private:
     std::unique_ptr<Store> store;
     std::unique_ptr<REPL> repl;

@@ -36,7 +36,7 @@ void REPL::parse(std::string& in) {
 
         }
         else if (upperCmd == "INSERT") {
-
+            manager->insert(loc, loc);
         }
         else if (upperCmd == "GET") {
 

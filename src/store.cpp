@@ -13,6 +13,12 @@ const_iterator Store::remove(const std::string& key) {
     --record_;
     return tree_.erase(retrieve(key));
 }
+void Store::setTitle(const std::string& t) {
+    title_ = t;
+}
 const std::string &Store::getTitle() const {
     return title_;
+}
+const size_t &Store::getRecord() const {
+    return record_;
 }

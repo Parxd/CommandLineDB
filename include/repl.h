@@ -14,7 +14,7 @@ public:
 private:
     /**
      * @brief Prints help menu (internal REPL method b/c
-     * doesn't affect anything on store)
+     *        doesn't affect anything in store)
      */
     void menu();
     void parse(std::string&);

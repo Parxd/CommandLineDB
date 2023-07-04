@@ -17,7 +17,10 @@ public:
     std::pair<iterator, bool> insert(std::string key, std::string value);
     iterator retrieve(const std::string& key);
     const_iterator remove(const std::string& key);
+
+    void setTitle(const std::string&);
     [[nodiscard]] const std::string& getTitle() const;
+    [[nodiscard]] const size_t& getRecord() const;
 private:
     std::string title_;
     std::pair<std::string, std::string> cols_;
