@@ -1,7 +1,6 @@
 #include <iostream>
 #include "../include/btree_map.h"
 #include "../include/repl.h"
-#include "../include/db.h"
 
 typedef btree::btree_map<int, int> MyMap;
 
@@ -12,10 +11,10 @@ int main() {
     MyMap::const_iterator lookup2 = obj_map->find(5);
     delete obj_map;
 
-    db database; // sets up its own store & repl, manages the connection between the two components
-
-    // or we could use command pattern + make store a static singleton so repl doesn't need to
+    // command branch: use command pattern + make store a static singleton so repl doesn't need to
     // be coupled with store
+    Store::instance();
+    REPL repl;
 
     return 0;
 }

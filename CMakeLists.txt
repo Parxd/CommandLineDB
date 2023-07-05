@@ -7,6 +7,7 @@ add_executable(CommandLineDB src/main.cpp)
 target_sources(CommandLineDB PRIVATE
         ./src/store.cpp
         ./src/repl.cpp
-        ./src/db.cpp
-        ./src/command.cpp
+        # cmds
+        ./src/cmds/factory.cpp
+        ./src/cmds/insert.cpp
         )

@@ -2,25 +2,24 @@
 #define COMMANDLINEDB_REPL_H
 
 #include <set>
-#include "db.h"
 #include "store.h"
+#include "command.h"
 
 class db;
 
 class REPL {
 public:
-    explicit REPL(std::unique_ptr<db>);
+    REPL();
     ~REPL() = default;
 private:
     /**
      * @brief Prints help menu (internal REPL method b/c
      *        doesn't affect anything in store)
      */
-    void menu();
+    static void menu();
     void parse(std::string&);
     bool loop = false;
     static REPL* inst;
-    std::unique_ptr<db> manager;
     std::unique_ptr<Store> store;
     std::set<std::string> commands;
 };
