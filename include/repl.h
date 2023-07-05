@@ -4,8 +4,7 @@
 #include <set>
 #include "store.h"
 #include "command.h"
-
-class db;
+#include "cmds/factory.h"
 
 class REPL {
 public:
@@ -19,8 +18,7 @@ private:
     static void menu();
     void parse(std::string&);
     bool loop = false;
-    static REPL* inst;
-    std::unique_ptr<Store> store;
+    Factory factory;
     std::set<std::string> commands;
 };
 
