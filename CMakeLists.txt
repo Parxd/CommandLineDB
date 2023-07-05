@@ -9,7 +9,5 @@ target_sources(CommandLineDB PRIVATE
         ./src/repl.cpp
         # cmds
         ./src/cmds/factory.cpp
-        ./src/cmds/connect.cpp
-        ./src/cmds/make.cpp
         ./src/cmds/insert.cpp
         )

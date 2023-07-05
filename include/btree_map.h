@@ -53,7 +53,7 @@ class btree_map : public btree_map_container<
 
  public:
   // Default constructor.
-  explicit btree_map(const key_compare &comp = key_compare(),
+  btree_map(const key_compare &comp = key_compare(),
             const allocator_type &alloc = allocator_type())
       : super_type(comp, alloc) {
   }
@@ -100,7 +100,7 @@ class btree_multimap : public btree_multi_container<
 
  public:
   // Default constructor.
-  explicit btree_multimap(const key_compare &comp = key_compare(),
+  btree_multimap(const key_compare &comp = key_compare(),
                  const allocator_type &alloc = allocator_type())
       : super_type(comp, alloc) {
   }

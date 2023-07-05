@@ -1,8 +1,6 @@
 #ifndef COMMANDLINEDB_COMMAND_H
 #define COMMANDLINEDB_COMMAND_H
 
-#include <string>
-
 class Command {
 public:
     virtual ~Command() = default;
