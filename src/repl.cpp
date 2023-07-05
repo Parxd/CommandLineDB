@@ -1,13 +1,11 @@
-#include <iostream>
 #include <chrono>
 #include <thread>
+#include <iostream>
 #include <boost/algorithm/string.hpp>
 #include "../include/repl.h"
+#include "../include/cmds/insert.h"
 
-REPL::REPL(std::unique_ptr<db> db): loop(true), manager(std::move(db)) {
-    commands.insert(
-            {"HELP", "CONNECT", "MAKE", "DEFINE", "INSERT", "GET", "DELETE", "EXIT", "VIEW"}
-            );
+REPL::REPL(): loop(true) {
     while (loop) {
         std::string in;
         std::cout << "> ";
@@ -20,81 +18,57 @@ void REPL::parse(std::string& in) {
     boost::trim(in);
     std::string cmd = in.substr(0, in.find(' '));
     std::string upperCmd = boost::to_upper_copy(cmd);
-    if (commands.find(upperCmd) != commands.end()) {
-        std::string loc = boost::erase_first_copy(in, cmd);
-        boost::trim(loc);
-        if (upperCmd == "HELP") {
-            menu();
-        }
-        else if (upperCmd == "CONNECT") {
+    std::string loc = boost::erase_first_copy(in, cmd);
+    boost::trim(loc);
+    if (upperCmd == "HELP") {
+        menu();
+    }
+    else if (upperCmd == "CONNECT") {
 
-        }
-        else if (upperCmd == "MAKE") {
+    }
+    else if (upperCmd == "MAKE") {
 
-        }
-        else if (upperCmd == "DEFINE") {
+    }
+    else if (upperCmd == "DEFINE") {
 
+    }
+    else if (upperCmd == "INSERT") {
+        std::string v1, v2;
+        size_t commaPos = loc.find(',');
+        if (commaPos != std::string::npos) {
+            v1 = loc.substr(0, commaPos);
+            v2 = loc.substr(commaPos + 1);
         }
-        else if (upperCmd == "INSERT") {
-            manager->insert(loc, loc);
-        }
-        else if (upperCmd == "GET") {
+    }
+    else if (upperCmd == "GET") {
 
-        }
-        else if (upperCmd == "DELETE") {
+    }
+    else if (upperCmd == "DELETE") {
 
-        }
-        else if (upperCmd == "VIEW") {
+    }
+    else if (upperCmd == "VIEW") {
 
-        }
-        else {
-            loop = false;
-            // save to file (also need save to file on dtor of store object)
-        }
+    }
+    else if (upperCmd == "EXIT") {
+        loop = false;
+        // save to file (also need save to file on dtor of store object)
     }
     else {
         std::cerr << "Unknown command. Type \"HELP\" for all commands." << std::endl;
     }
 }
 void REPL::menu() {
-    int c = 0;
-    std::cout << "\n";
-    std::cout << "Options: " << "\n";
-    for (auto &i : commands) {
-        std::cout << i;
-        switch (c) {
-            case 0:
-                std::cout << " <filename> --path to existing database file";
-                break;
-            case 1:
-                std::cout << " <column 1, column 2> --column names for key, value pairs";
-                break;
-            case 2:
-                std::cout << " <key> --key of pair to be deleted";
-                break;
-            case 3:
-                std::cout << " --exit database application";
-                break;
-            case 4:
-                std::cout << " <key> //key of pair to be retrieved";
-                break;
-            case 5:
-                std::cout << " --view options menu";
-                break;
-            case 6:
-                std::cout << " <key, value> --pair to be inserted";
-                break;
-            case 7:
-                std::cout << " <title> --name of new database to be created";
-                break;
-            case 8:
-                std::cout << " --view database info";
-                break;
-            default:
-                break;
-        }
-        std::cout << "\n";
-        ++c;
-    }
-    std::cout << std::endl;
+    std::cout << "-- Options --" << "\n";
+    // DB mgmt
+    std::cout << "CONNECT <file> --connect to existing database file path" << "\n";
+    std::cout << "MAKE <title> --name of new database to be created" << "\n";
+    std::cout << "DEFINE <column 1, column 2> --column names for key, value pairs" << "\n\n";
+    // Data mgmt
+    std::cout << "INSERT <key, value> --pair to be inserted" << "\n";
+    std::cout << "GET <key> --key of pair to be retrieved" << "\n";
+    std::cout << "DELETE <key> --key of pair to be deleted" << "\n\n";
+    // Misc
+    std::cout << "VIEW --view database info" << "\n";
+    std::cout << "HELP --view options menu" << "\n";
+    std::cout << "EXIT --exit database application" << std::endl;
 }

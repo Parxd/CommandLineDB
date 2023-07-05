@@ -1,5 +1,11 @@
 #include "../include/store.h"
 
+Store* Store::inst = nullptr;
+Store *Store::instance() {
+    if (Store::inst == nullptr)
+        Store::inst = new Store;
+    return Store::inst;
+}
 Store::Store(): tree_(), record_(0) {}
 Store::Store(const Store &ref): tree_(ref.tree_), record_(ref.record_) {};
 std::pair<iterator, bool> Store::insert(std::string key, std::string value) {

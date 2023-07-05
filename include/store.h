@@ -11,7 +11,7 @@ typedef Tree::const_iterator const_iterator;
 
 class Store {
 public:
-    Store();
+    static Store* instance();
     ~Store() = default;
     Store(const Store& ref);
     std::pair<iterator, bool> insert(std::string key, std::string value);
@@ -22,6 +22,8 @@ public:
     [[nodiscard]] const std::string& getTitle() const;
     [[nodiscard]] const size_t& getRecord() const;
 private:
+    Store();
+    static Store* inst;
     std::string title_;
     std::pair<std::string, std::string> cols_;
     size_t record_;
