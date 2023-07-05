@@ -3,9 +3,11 @@
 #include <iostream>
 #include <boost/algorithm/string.hpp>
 #include "../include/repl.h"
-#include "../include/cmds/insert.h"
 
-REPL::REPL(): loop(true) {
+REPL::REPL(): loop(true), factory() {
+    commands.insert(
+            {"CONNECT", "MAKE", "INSERT", "GET", "DELETE", "VIEW", "HELP", "EXIT", "SAVE"}
+            );
     while (loop) {
         std::string in;
         std::cout << "> ";
@@ -20,38 +22,13 @@ void REPL::parse(std::string& in) {
     std::string upperCmd = boost::to_upper_copy(cmd);
     std::string loc = boost::erase_first_copy(in, cmd);
     boost::trim(loc);
-    if (upperCmd == "HELP") {
-        menu();
-    }
-    else if (upperCmd == "CONNECT") {
-
-    }
-    else if (upperCmd == "MAKE") {
-
-    }
-    else if (upperCmd == "DEFINE") {
-
-    }
-    else if (upperCmd == "INSERT") {
-        std::string v1, v2;
-        size_t commaPos = loc.find(',');
-        if (commaPos != std::string::npos) {
-            v1 = loc.substr(0, commaPos);
-            v2 = loc.substr(commaPos + 1);
+    if (commands.find(upperCmd) != commands.end()) {
+        if (upperCmd == "HELP") {
+            menu();
         }
-    }
-    else if (upperCmd == "GET") {
-
-    }
-    else if (upperCmd == "DELETE") {
-
-    }
-    else if (upperCmd == "VIEW") {
-
-    }
-    else if (upperCmd == "EXIT") {
-        loop = false;
-        // save to file (also need save to file on dtor of store object)
+        else {
+            factory.makeCommand(upperCmd, loc);
+        }
     }
     else {
         std::cerr << "Unknown command. Type \"HELP\" for all commands." << std::endl;
@@ -61,8 +38,8 @@ void REPL::menu() {
     std::cout << "-- Options --" << "\n";
     // DB mgmt
     std::cout << "CONNECT <file> --connect to existing database file path" << "\n";
-    std::cout << "MAKE <title> --name of new database to be created" << "\n";
-    std::cout << "DEFINE <column 1, column 2> --column names for key, value pairs" << "\n\n";
+    std::cout << "MAKE <title, col1, col2> "
+                 "--name of new database to be created, column names for key, value pairs" << "\n";
     // Data mgmt
     std::cout << "INSERT <key, value> --pair to be inserted" << "\n";
     std::cout << "GET <key> --key of pair to be retrieved" << "\n";

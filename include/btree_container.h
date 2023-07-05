@@ -103,7 +103,7 @@ class btree_container {
   // Size routines.
   size_type size() const { return tree_.size(); }
   size_type max_size() const { return tree_.max_size(); }
-  bool empty() const { return tree_.empty(); }
+  [[nodiscard]] bool empty() const { return tree_.empty(); }
   size_type height() const { return tree_.height(); }
   size_type internal_nodes() const { return tree_.internal_nodes(); }
   size_type leaf_nodes() const { return tree_.leaf_nodes(); }
@@ -112,8 +112,8 @@ class btree_container {
   static double average_bytes_per_value() {
     return Tree::average_bytes_per_value();
   }
-  double fullness() const { return tree_.fullness(); }
-  double overhead() const { return tree_.overhead(); }
+  [[nodiscard]] double fullness() const { return tree_.fullness(); }
+  [[nodiscard]] double overhead() const { return tree_.overhead(); }
 
   bool operator==(const self_type& x) const {
     if (size() != x.size()) {
@@ -159,7 +159,7 @@ class btree_unique_container : public btree_container<Tree> {
 
  public:
   // Default constructor.
-  btree_unique_container(const key_compare &comp = key_compare(),
+  explicit btree_unique_container(const key_compare &comp = key_compare(),
                          const allocator_type &alloc = allocator_type())
       : super_type(comp, alloc) {
   }
@@ -235,7 +235,7 @@ class btree_map_container : public btree_unique_container<Tree> {
   // dereferenced. Used by operator[] to avoid constructing an empty data_type
   // if the key already exists in the map.
   struct generate_value {
-    generate_value(const key_type &k)
+    explicit generate_value(const key_type &k)
         : key(k) {
     }
     value_type operator*() const {
@@ -246,7 +246,7 @@ class btree_map_container : public btree_unique_container<Tree> {
 
  public:
   // Default constructor.
-  btree_map_container(const key_compare &comp = key_compare(),
+  explicit btree_map_container(const key_compare &comp = key_compare(),
                       const allocator_type &alloc = allocator_type())
       : super_type(comp, alloc) {
   }
@@ -287,7 +287,7 @@ class btree_multi_container : public btree_container<Tree> {
 
  public:
   // Default constructor.
-  btree_multi_container(const key_compare &comp = key_compare(),
+  explicit btree_multi_container(const key_compare &comp = key_compare(),
                         const allocator_type &alloc = allocator_type())
       : super_type(comp, alloc) {
   }
