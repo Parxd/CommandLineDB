@@ -27,11 +27,16 @@ void REPL::parse(std::string& in) {
             menu();
         }
         else {
-            factory.makeCommand(upperCmd, loc);
+            try {
+                factory.makeCommand(upperCmd, loc);
+            }
+            catch (std::invalid_argument&) {
+                std::cerr << "Invalid format. See \"HELP\" for formatting." << std::endl;
+            }
         }
     }
     else {
-        std::cerr << "Unknown command. Type \"HELP\" for all commands." << std::endl;
+        std::cerr << "Unknown command. See \"HELP\" for all commands." << std::endl;
     }
 }
 void REPL::menu() {

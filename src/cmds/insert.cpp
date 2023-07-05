@@ -8,7 +8,7 @@ Insert::Insert(const std::string& args) {
         value = args.substr(commaPos + 1);
     }
     else {
-        std::cerr << "Invalid insertion format. See \"HELP\" for formatting." << std::endl;
+        throw std::invalid_argument("Invalid format.");
     }
 }
 bool Insert::execute() {

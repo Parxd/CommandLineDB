@@ -14,11 +14,11 @@ Make::Make(const std::string& args) {
             col2 = cols.substr(commaPos2 + 1);
         }
         else {
-            std::cerr << "Invalid insertion format. See \"HELP\" for formatting." << std::endl;
+            throw std::invalid_argument("Invalid format.");
         }
     }
     else {
-        std::cerr << "Invalid insertion format. See \"HELP\" for formatting." << std::endl;
+        throw std::invalid_argument("Invalid format.");
     }
 }
 bool Make::execute() {
