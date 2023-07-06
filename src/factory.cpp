@@ -1,8 +1,8 @@
-#include "../../include/cmds/factory.h"
+#include "../include/factory.h"
 
-#include "../../include/cmds/connect.h"
-#include "../../include/cmds/make.h"
-#include "../../include/cmds/insert.h"
+#include "../include/cmds/connect.h"
+#include "../include/cmds/make.h"
+#include "../include/cmds/insert.h"
 
 Factory::Factory() {
     commandMap["CONNECT"] = &Factory::makeConnectCommand;

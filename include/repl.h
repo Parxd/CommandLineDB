@@ -4,7 +4,7 @@
 #include <set>
 #include "store.h"
 #include "command.h"
-#include "cmds/factory.h"
+#include "factory.h"
 
 class REPL {
 public:

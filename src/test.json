@@ -1,0 +1,16 @@
+{
+  "Database": [
+    {
+      "name": "daniel",
+      "pay": "3000"
+    },
+    {
+      "name": "david",
+      "pay": "1000"
+    },
+    {
+      "name": "joe",
+      "pay": "5000"
+    }
+  ]
+}

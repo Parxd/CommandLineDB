@@ -8,8 +8,11 @@ target_sources(CommandLineDB PRIVATE
         ./src/store.cpp
         ./src/repl.cpp
         # cmds
-        ./src/cmds/factory.cpp
+        src/factory.cpp
         ./src/cmds/connect.cpp
         ./src/cmds/make.cpp
         ./src/cmds/insert.cpp
+        ./src/cmds/get.cpp
         )
+find_package(Boost REQUIRED COMPONENTS system filesystem)
+target_link_libraries(CommandLineDB PRIVATE Boost::filesystem Boost::boost)

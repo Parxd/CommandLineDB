@@ -28,10 +28,10 @@ void REPL::parse(std::string& in) {
         }
         else {
             try {
-                factory.makeCommand(upperCmd, loc);
+                factory.makeCommand(upperCmd, loc)->execute();
             }
-            catch (std::invalid_argument&) {
-                std::cerr << "Invalid format. See \"HELP\" for formatting." << std::endl;
+            catch (std::invalid_argument& err) {
+                std::cerr << std::string(err.what()) + " See \"HELP\" for formatting." << std::endl;
             }
         }
     }
