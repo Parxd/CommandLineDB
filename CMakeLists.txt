@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.20)
 set(CMAKE_CXX_STANDARD 17)
 project(CommandLineDB)
 
@@ -14,5 +14,3 @@ target_sources(CommandLineDB PRIVATE
         ./src/cmds/insert.cpp
         ./src/cmds/get.cpp
         )
-find_package(Boost REQUIRED COMPONENTS system filesystem)
-target_link_libraries(CommandLineDB PRIVATE Boost::filesystem Boost::boost)
