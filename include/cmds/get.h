@@ -5,7 +5,7 @@
 
 class Get: public Command {
 public:
-    explicit Get(std::string);
+    explicit Get(const std::string&);
     bool execute() override;
 private:
     std::string key;

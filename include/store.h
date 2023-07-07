@@ -21,6 +21,7 @@ public:
     void setTitle(const std::string&);
     [[nodiscard]] const std::string& getTitle() const;
     [[nodiscard]] const size_t& getRecord() const;
+    [[nodiscard]] const_iterator getEnd() const;
 private:
     Store();
     static Store* inst;

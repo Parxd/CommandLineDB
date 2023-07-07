@@ -662,7 +662,7 @@ struct btree_iterator {
   typedef btree_iterator<Node, Reference, Pointer> self_type;
 
   btree_iterator()
-      : node(NULL),
+      : node(nullptr),
         position(-1) {
   }
   btree_iterator(Node *n, int p)
