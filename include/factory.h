@@ -14,6 +14,7 @@ public:
     virtual std::unique_ptr<Command> makeMakeCommand(const std::string&);
     virtual std::unique_ptr<Command> makeInsertCommand(const std::string&);
     virtual std::unique_ptr<Command> makeGetCommand(const std::string&);
+    virtual std::unique_ptr<Command> makeDeleteCommand(const std::string&);
 private:
     typedef std::unique_ptr<Command> (Factory::*ptr)(const std::string&);
     std::unordered_map<std::string, ptr> commandMap;

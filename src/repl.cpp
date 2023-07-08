@@ -30,8 +30,13 @@ void REPL::parse(std::string& in) {
             try {
                 factory.makeCommand(upperCmd, loc)->execute();
             }
+            // Input errors
             catch (std::invalid_argument& err) {
                 std::cerr << std::string(err.what()) + " See \"HELP\" for formatting." << std::endl;
+            }
+            // State errors
+            catch (std::logic_error& err) {
+                std::cerr << "Error: " << err.what() << std::endl;
             }
         }
     }
@@ -48,9 +53,11 @@ void REPL::menu() {
     // Data mgmt
     std::cout << "INSERT <key, value> --pair to be inserted" << "\n";
     std::cout << "GET <key> --key of pair to be retrieved" << "\n";
-    std::cout << "DELETE <key> --key of pair to be deleted" << "\n\n";
+    std::cout << "DELETE <key> --key of pair to be deleted" << "\n";
     // Misc
     std::cout << "VIEW --view database info" << "\n";
     std::cout << "HELP --view options menu" << "\n";
-    std::cout << "EXIT --exit database application" << std::endl;
+    std::cout << "EXIT --exit database application" << "\n";
+
+    std::cout << "-------------" << std::endl;
 }

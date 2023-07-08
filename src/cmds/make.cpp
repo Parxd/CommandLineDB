@@ -29,7 +29,11 @@ Make::Make(const std::string& args) {
     else {
         throw std::invalid_argument("Invalid format.");
     }
+    Store::instance()->state = 1;
+    std::cout << "Connected to transient in-memory database." << "\n";
 }
 bool Make::execute() {
-    return false;
+    Store::instance()->setTitle(title);
+    Store::instance()->setCols(col1, col2);
+    return true;
 }

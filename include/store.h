@@ -11,6 +11,7 @@ typedef Tree::const_iterator const_iterator;
 
 class Store {
 public:
+    int state;
     static Store* instance();
     ~Store() = default;
     Store(const Store& ref);
@@ -19,6 +20,7 @@ public:
     const_iterator remove(const std::string& key);
 
     void setTitle(const std::string&);
+    void setCols(const std::string &c1, const std::string &c2);
     [[nodiscard]] const std::string& getTitle() const;
     [[nodiscard]] const size_t& getRecord() const;
     [[nodiscard]] const_iterator getEnd() const;

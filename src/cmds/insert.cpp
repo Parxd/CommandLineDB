@@ -3,6 +3,9 @@
 #include "../../include/cmds/insert.h"
 
 Insert::Insert(const std::string& args) {
+    if (Store::instance()->state == 0) {
+        throw std::logic_error("Not connected to database.");
+    }
     size_t commaPos = args.find(',');
     if (commaPos != std::string::npos) {
         key = args.substr(0, commaPos);
