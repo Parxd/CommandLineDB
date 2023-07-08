@@ -6,7 +6,7 @@
 
 REPL::REPL(): loop(true), factory() {
     commands.insert(
-            {"CONNECT", "MAKE", "INSERT", "GET", "DELETE", "VIEW", "HELP", "EXIT", "SAVE"}
+            {"CONNECT", "MAKE", "INSERT", "GET", "DELETE", "VIEW", "HELP", "EXIT", "DISCONNECT"}
             );
     while (loop) {
         std::string in;
@@ -15,6 +15,9 @@ REPL::REPL(): loop(true), factory() {
         parse(in);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+}
+REPL::~REPL() {
+    delete Store::instance();
 }
 void REPL::parse(std::string& in) {
     boost::trim(in);
@@ -25,6 +28,21 @@ void REPL::parse(std::string& in) {
     if (commands.find(upperCmd) != commands.end()) {
         if (upperCmd == "HELP") {
             menu();
+        }
+        else if (upperCmd == "DISCONNECT") {
+            if (Store::status()) {
+                delete Store::instance();
+                std::cout << "Disconnected from database." << "\n";
+            }
+            else {
+                std::cerr << "Not connected to database." << "\n";
+            }
+        }
+        else if (upperCmd == "EXIT") {
+            loop = false;
+            if (Store::instance()->state == 2) {
+                // save
+            }
         }
         else {
             try {

@@ -2,8 +2,6 @@
 #include "../include/repl.h"
 
 int main() {
-    Store::instance();
-
     // Uninitialized: Start program without args (must use MAKE/CONNECT before any other cmd) (0)
     // Transient: Connected to in-memory (1)
     // Persistent: Start program with args, connected to a file (2)

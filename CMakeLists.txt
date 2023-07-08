@@ -14,4 +14,5 @@ target_sources(CommandLineDB PRIVATE
         ./src/cmds/insert.cpp
         ./src/cmds/get.cpp
         ./src/cmds/delete.cpp
+        ./src/cmds/disconnect.cpp
         )

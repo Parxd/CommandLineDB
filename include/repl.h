@@ -9,7 +9,7 @@
 class REPL {
 public:
     REPL();
-    ~REPL() = default;
+    ~REPL();
 private:
     /**
      * @brief Prints help menu (internal REPL method b/c
