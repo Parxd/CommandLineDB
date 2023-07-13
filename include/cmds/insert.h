@@ -5,11 +5,12 @@
 
 class Insert: public Command {
 public:
-    explicit Insert(Store&, const std::string&);
+    explicit Insert(Store&, const std::string&, int&);
     bool execute() override;
 private:
     Store& store;
     std::string key, value;
+    int& state;
 };
 
 #endif //COMMANDLINEDB_INSERT_H

@@ -2,7 +2,10 @@
 #include "../../include/store.h"
 #include "../../include/cmds/insert.h"
 
-Insert::Insert(Store& str, const std::string& args): store(str) {
+Insert::Insert(Store& str, const std::string& args, int& s): store(str), state(s) {
+    if (!state) {
+        throw std::logic_error("Not connected to database--MAKE or CONNECT first.");
+    }
     size_t commaPos = args.find(',');
     if (commaPos != std::string::npos) {
         key = args.substr(0, commaPos);
@@ -17,6 +20,6 @@ Insert::Insert(Store& str, const std::string& args): store(str) {
     }
 }
 bool Insert::execute() {
-    store.insert(key, value);
+
     return true;
 }

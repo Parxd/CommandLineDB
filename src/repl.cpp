@@ -24,7 +24,7 @@ void REPL::parse(std::string& in) {
     boost::trim(loc);
     if (commands.find(upperCmd) != commands.end()) {
         try {
-            factory.makeCommand(store, upperCmd, loc)->execute();
+            factory.makeCommand(store, upperCmd, loc, state)->execute();
         }
         // Input errors
         catch (std::invalid_argument& err) {

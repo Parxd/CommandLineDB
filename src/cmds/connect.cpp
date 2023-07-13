@@ -3,7 +3,7 @@
 #include <filesystem>
 #include "../../include/cmds/connect.h"
 
-Connect::Connect(Store& str, std::string args): store(str) {
+Connect::Connect(Store& str, std::string args, int& s): store(str), state(s) {
     if (std::filesystem::is_regular_file(args)) {
         // still need to check if it's a json file and a valid one at that too
         filepath = std::move(args);
@@ -27,14 +27,9 @@ Connect::Connect(Store& str, std::string args): store(str) {
     std::cout << "Connected to persistent database at " + filepath << ".\n";
 }
 bool Connect::execute() {
-    if (store.getRecord()) {
-        if (store.getConnect()) {
-            // save - connected
-        }
-        else {
-            store.clear();
-            store.setConnect(true);
-        }
+    if (state == 1) {
+        std::cout << "Disconnecting from in-memory transient database.\n";
     }
-    return false;
+    state = 2;
+    return true;
 }

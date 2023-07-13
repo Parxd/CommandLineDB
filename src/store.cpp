@@ -2,7 +2,9 @@
 
 Store::Store(): tree_(), record_(0), connect(false) {}
 void Store::clear() {
-    // save
+    if (connect) {
+        // save
+    }
     tree_.clear();
 }
 std::pair<iterator, bool> Store::insert(std::string key, std::string value) {

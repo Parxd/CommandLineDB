@@ -11,6 +11,11 @@ public:
     REPL();
     ~REPL() = default;
 private:
+    /**
+     * 0: None
+     * 1: Transient
+     * 2: Persistent
+     */
     int state;
     void parse(std::string&);
     bool loop = false;

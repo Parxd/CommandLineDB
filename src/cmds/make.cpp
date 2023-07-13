@@ -2,7 +2,7 @@
 #include "../../include/store.h"
 #include "../../include/cmds/make.h"
 
-Make::Make(Store& str, const std::string& args): store(str) {
+Make::Make(Store& str, const std::string& args, int& s): store(str), state(s) {
     size_t commaPos1 = args.find(',');
     if (commaPos1 != std::string::npos) {
         std::string cols;
@@ -34,5 +34,6 @@ Make::Make(Store& str, const std::string& args): store(str) {
 bool Make::execute() {
     store.setTitle(title);
     store.setCols(col1, col2);
+    state = 1;
     return true;
 }
