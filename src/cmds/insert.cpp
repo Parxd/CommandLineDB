@@ -20,6 +20,6 @@ Insert::Insert(Store& str, const std::string& args, int& s): store(str), state(s
     }
 }
 bool Insert::execute() {
-
+    store.insert(key, value);
     return true;
 }

@@ -1,5 +1,4 @@
 #include "../../include/cmds/delete.h"
-#include "../../include/store.h"
 
 Delete::Delete(Store& str, const std::string &k, int& s): key(k), store(str), state(s) {
     if (!state) {
@@ -10,6 +9,10 @@ Delete::Delete(Store& str, const std::string &k, int& s): key(k), store(str), st
     }
 }
 bool Delete::execute() {
-
+    auto it = store.remove(key);
+    if (it == store.getEnd()) {
+        std::cout << "Key not found.\n";
+        return false;
+    }
     return true;
 }

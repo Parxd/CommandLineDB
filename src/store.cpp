@@ -16,7 +16,10 @@ iterator Store::retrieve(const std::string& key) {
     return tree_.find(key);
 }
 const_iterator Store::remove(const std::string& key) {
-    auto it = tree_.erase(retrieve(key));
+    auto it = retrieve(key);
+    if (it != tree_.end()) {
+        tree_.erase(it);
+    }
     --record_;
     return it;
 }
