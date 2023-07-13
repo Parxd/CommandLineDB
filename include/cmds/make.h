@@ -5,9 +5,10 @@
 
 class Make: public Command {
 public:
-    explicit Make(const std::string&);
+    explicit Make(Store&, const std::string&);
     bool execute() override;
 private:
+    Store& store;
     std::string title, col1, col2;
 };
 

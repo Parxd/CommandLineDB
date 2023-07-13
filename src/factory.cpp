@@ -13,22 +13,22 @@ Factory::Factory() {
     commandMap["GET"] = &Factory::makeGetCommand;
     commandMap["DELETE"] = &Factory::makeDeleteCommand;
 }
-std::unique_ptr<Command> Factory::makeCommand(const std::string &cmd, const std::string &args) {
+std::unique_ptr<Command> Factory::makeCommand(Store& str, const std::string &cmd, const std::string &args) {
     auto ptr = commandMap.find(cmd)->second;
-    return (this->*ptr)(args);
+    return (this->*ptr)(str, args);
 }
-std::unique_ptr<Command> Factory::makeConnectCommand(const std::string &args) {
-    return std::make_unique<Connect>(args);
+std::unique_ptr<Command> Factory::makeConnectCommand(Store& str, const std::string &args) {
+    return std::make_unique<Connect>(str, args);
 }
-std::unique_ptr<Command> Factory::makeMakeCommand(const std::string &args) {
-    return std::make_unique<Make>(args);
+std::unique_ptr<Command> Factory::makeMakeCommand(Store& str, const std::string &args) {
+    return std::make_unique<Make>(str, args);
 }
-std::unique_ptr<Command> Factory::makeInsertCommand(const std::string &args) {
-    return std::make_unique<Insert>(args);
+std::unique_ptr<Command> Factory::makeInsertCommand(Store& str, const std::string &args) {
+    return std::make_unique<Insert>(str, args);
 }
-std::unique_ptr<Command> Factory::makeGetCommand(const std::string &args) {
-    return std::make_unique<Get>(args);
+std::unique_ptr<Command> Factory::makeGetCommand(Store& str, const std::string &args) {
+    return std::make_unique<Get>(str, args);
 }
-std::unique_ptr<Command> Factory::makeDeleteCommand(const std::string &args) {
-    return std::make_unique<Delete>(args);
+std::unique_ptr<Command> Factory::makeDeleteCommand(Store& str, const std::string &args) {
+    return std::make_unique<Delete>(str, args);
 }

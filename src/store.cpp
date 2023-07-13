@@ -1,13 +1,10 @@
 #include "../include/store.h"
 
-Store *Store::inst = nullptr;
-Store *Store::instance() {
-    if (Store::inst == nullptr)
-        Store::inst = new Store;
-    return Store::inst;
+Store::Store(): tree_(), record_(0), connect(false) {}
+void Store::clear() {
+    // save
+    tree_.clear();
 }
-Store::Store(): tree_(), record_(0), state(0) {}
-Store::Store(const Store &ref): tree_(ref.tree_), record_(ref.record_), state(0) {};
 std::pair<iterator, bool> Store::insert(std::string key, std::string value) {
     auto it = tree_.insert(std::make_pair<std::string, std::string>(std::move(key), std::move(value)));
     ++record_;
@@ -36,4 +33,10 @@ const size_t &Store::getRecord() const {
 }
 const_iterator Store::getEnd() const {
     return tree_.end();
+}
+void Store::setConnect(bool c) {
+    connect = c;
+}
+bool Store::getConnect() const {
+    return connect;
 }

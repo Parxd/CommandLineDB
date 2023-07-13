@@ -5,9 +5,10 @@
 
 class Get: public Command {
 public:
-    explicit Get(const std::string&);
+    explicit Get(Store&, const std::string&);
     bool execute() override;
 private:
+    Store& store;
     std::string key;
 };
 

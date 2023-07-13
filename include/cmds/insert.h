@@ -5,9 +5,10 @@
 
 class Insert: public Command {
 public:
-    explicit Insert(const std::string&);
+    explicit Insert(Store&, const std::string&);
     bool execute() override;
 private:
+    Store& store;
     std::string key, value;
 };
 

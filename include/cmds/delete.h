@@ -5,9 +5,10 @@
 
 class Delete: public Command {
 public:
-    explicit Delete(const std::string&);
+    explicit Delete(Store&, const std::string&);
     bool execute() override;
 private:
+    Store& store;
     std::string key;
 };
 

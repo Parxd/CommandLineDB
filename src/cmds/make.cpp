@@ -2,8 +2,7 @@
 #include "../../include/store.h"
 #include "../../include/cmds/make.h"
 
-Make::Make(const std::string& args) {
-
+Make::Make(Store& str, const std::string& args): store(str) {
     size_t commaPos1 = args.find(',');
     if (commaPos1 != std::string::npos) {
         std::string cols;
@@ -30,11 +29,10 @@ Make::Make(const std::string& args) {
     else {
         throw std::invalid_argument("Invalid format.");
     }
-    Store::instance()->state = 1;
     std::cout << "Connected to transient in-memory database." << "\n";
 }
 bool Make::execute() {
-    Store::instance()->setTitle(title);
-    Store::instance()->setCols(col1, col2);
+    store.setTitle(title);
+    store.setCols(col1, col2);
     return true;
 }

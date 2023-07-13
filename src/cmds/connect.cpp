@@ -2,9 +2,8 @@
 #include <utility>
 #include <filesystem>
 #include "../../include/cmds/connect.h"
-#include "../../include/store.h"
 
-Connect::Connect(std::string args) {
+Connect::Connect(Store& str, std::string args): store(str) {
     if (std::filesystem::is_regular_file(args)) {
         // still need to check if it's a json file and a valid one at that too
         filepath = std::move(args);
@@ -25,9 +24,17 @@ Connect::Connect(std::string args) {
             throw std::invalid_argument("Invalid format - formatting or file path is invalid.");
         }
     }
-    Store::instance()->state = 2;
     std::cout << "Connected to persistent database at " + filepath << ".\n";
 }
 bool Connect::execute() {
+    if (store.getRecord()) {
+        if (store.getConnect()) {
+            // save - connected
+        }
+        else {
+            store.clear();
+            store.setConnect(true);
+        }
+    }
     return false;
 }

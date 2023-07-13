@@ -5,9 +5,10 @@
 
 class Connect: public Command {
 public:
-    explicit Connect(std::string);
+    explicit Connect(Store&, std::string);
     bool execute() override;
 private:
+    Store& store;
     std::string filepath;
 };
 

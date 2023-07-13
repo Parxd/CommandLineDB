@@ -2,6 +2,7 @@
 #define COMMANDLINEDB_COMMAND_H
 
 #include <string>
+#include "store.h"
 
 class Command {
 public:

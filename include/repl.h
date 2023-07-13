@@ -9,15 +9,12 @@
 class REPL {
 public:
     REPL();
-    ~REPL();
+    ~REPL() = default;
 private:
-    /**
-     * @brief Prints help menu (internal REPL method b/c
-     *        doesn't affect anything in store)
-     */
-    static void menu();
+    int state;
     void parse(std::string&);
     bool loop = false;
+    Store store;
     Factory factory;
     std::set<std::string> commands;
 };
